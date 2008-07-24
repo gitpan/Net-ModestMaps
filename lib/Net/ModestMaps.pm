@@ -1,11 +1,11 @@
 use strict;
 
-# $Id: ModestMaps.pm,v 1.7 2008/07/05 07:38:20 asc Exp $
+# $Id: ModestMaps.pm,v 1.9 2008/07/24 06:05:16 asc Exp $
 
 package Net::ModestMaps;
 use base qw(LWP::UserAgent);
 
-$Net::ModestMaps::VERSION = '1.0';
+$Net::ModestMaps::VERSION = '1.1';
 
 =head1 NAME
 
@@ -200,6 +200,10 @@ sub ensure_max_header_lines {
         my $self = shift;
         my $markers = shift;
 
+	if (ref($markers) ne "ARRAY"){
+		return;
+	}
+
         my $cnt = scalar(@$markers);
         my $max = ($cnt > int(128 * .1)) ? $cnt * 1.2 : $cnt * 1.1;
 
@@ -217,11 +221,11 @@ sub set_max_header_lines {
 
 =head1 VERSION
 
-1.0
+1.1
 
 =head1 DATE 
 
-$Date: 2008/07/05 07:38:20 $
+$Date: 2008/07/24 06:05:16 $
 
 =head1 AUTHOR 
 
